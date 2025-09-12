@@ -1,30 +1,46 @@
-# Constantes
-UMBRAL_BAJO = 3.0
-UMBRAL_MEDIO = 5.0
-UMBRAL_ALTO = 7.0
+# Definición de constantes
+UMBRAL_BAJO = 2.00
+UMBRAL_MEDIO = 4.00
+UMBRAL_ALTO = 5.00
 
-# Entradas
-alumno = input("Nombre del alumno: ")
-equipo = input("Nombre del equipo: ")
+# Solicitar entradas
+nombre = input("Ingrese el nombre del alumno o equipo: ")
+num_muestras = input("Ingrese el número de muestras/serie (entero): ")
 
+# Intentar convertir la cantidad de muestras a entero
 try:
-    l1 = float(input("Primera lectura (V): "))
-    l2 = float(input("Segunda lectura (V): "))
+    num_muestras = int(num_muestras)
 except ValueError:
-    print("❌ Error: Ingrese valores numéricos válidos.")
-    exit()
+    print("❌ Error: El número de muestras debe ser un valor entero.")
+    exit(1)
 
-# Cálculo del promedio
-promedio = (l1 + l2) / 2
+# Inicializar una lista para almacenar las lecturas
+lecturas = []
 
-# Clasificación según el promedio
-if promedio < UMBRAL_MEDIO:
-    estado = "BAJO (< 5.00 V)"
+# Solicitar las lecturas al usuario
+for i in range(num_muestras):
+    lectura = input(f"Ingrese la lectura {i+1} (ej. 4.5): ")
+    try:
+        lectura = float(lectura)
+        lecturas.append(lectura)
+    except ValueError:
+        print(f"❌ Error: La lectura {i+1} no es un número válido.")
+        exit(1)
+
+# Calcular el promedio de las lecturas
+promedio = sum(lecturas) / len(lecturas)
+
+# Clasificar el estado según el promedio
+if promedio >= UMBRAL_ALTO:
+    estado = "ALTO"
+elif promedio >= UMBRAL_MEDIO:
+    estado = "MEDIO"
 else:
-    estado = "ALTO (>= 5.00 V)"
+    estado = "BAJO"
 
 # Reporte final
 print("\n=== REPORTE DE SENSOR ===")
-print(f"Alumno: {alumno} | Equipo: {equipo}")
-print(f"Lecturas (V): {l1:.2f}, {l2:.2f} | Promedio: {promedio:.2f} V")
+print(f"Alumno/Equipo: {nombre}")
+print("Lecturas (V):", ", ".join(f"{x:.2f}" for x in lecturas))
+print(f"Promedio: {promedio:.2f} V")
 print(f"Estado: {estado}")

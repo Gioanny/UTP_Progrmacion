@@ -1,6 +1,6 @@
 import datetime as dt #importar funciones - nodulo fecha
 import random as rd #importar funciones - modulo aleatorio
-nombre = "Juan Pérez" #constante
+nombre = "Gioanny" #constante
 fecha= dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S") #salida de variable
 #definir valores aleatorios
 print("hola " + nombre)

@@ -27,5 +27,5 @@ axs[0,0].set_title("datos aleatorios 1")
 axs[0,1].plot(ejex,ejey2,color="#6ddf97d5",marker='o', linestyle=':')
 axs[1,1].set_xlabel("cantidad")
 axs[1,1].grid()
-plt.savefig('salidapng.jpg',bbox_inches ="tight", 
+plt.savefig('salidapng.svg',bbox_inches ="tight", 
 			pad_inches = 0.8,dpi=1080,edgecolor="b",facecolor ="#dcc8d9d4")
